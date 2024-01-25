@@ -66,8 +66,30 @@ index c5d5648f4ca603ef2b1df723b58f9caf4dd3c722..339c13e60f76a0f13cf8c10045a938f0
                  .variable(LineReader.HISTORY_FILE, java.nio.file.Paths.get(".console_history"))
                  .completer(new ConsoleCommandCompleter(this.server))
                  .option(LineReader.Option.COMPLETE_IN_WORD, true);
+diff --git a/src/main/java/gg/pufferfish/pufferfish/PufferfishVersionFetcher.java b/src/main/java/gg/pufferfish/pufferfish/PufferfishVersionFetcher.java
+index 893d8c0946ef71a0561221dd76bffff0dc940d56..7470ee462f927743b5c476f46bfb6ec12dbb4899 100644
+--- a/src/main/java/gg/pufferfish/pufferfish/PufferfishVersionFetcher.java
++++ b/src/main/java/gg/pufferfish/pufferfish/PufferfishVersionFetcher.java
+@@ -31,7 +31,7 @@ public class PufferfishVersionFetcher implements VersionFetcher {
+ 	private static final HttpClient client = HttpClient.newHttpClient();
+ 	
+ 	private static final URI JENKINS_URI = URI.create("https://ci.pufferfish.host/job/Pufferfish-1.20/lastSuccessfulBuild/buildNumber");
+-	private static final String GITHUB_FORMAT = "https://api.github.com/repos/pufferfish-gg/Pufferfish/compare/ver/1.20...%s";
++	private static final String GITHUB_FORMAT = "https://api.github.com/repos/Obydux/Boxfish/compare/ver/1.20...%s"; // Boxfish
+ 	
+ 	private static final HttpResponse.BodyHandler<JsonObject> JSON_OBJECT_BODY_HANDLER = responseInfo -> HttpResponse.BodySubscribers
+ 			.mapping(
+@@ -112,7 +112,7 @@ public class PufferfishVersionFetcher implements VersionFetcher {
+ 	
+ 	private @NotNull Component getResponseMessage(final int versionDiff) {
+ 		return switch (Math.max(-1, Math.min(1, versionDiff))) {
+-			case -1 -> text("You are running an unsupported version of Pufferfish.", RED);
++			case -1 -> text("You are running an unsupported version of Boxfish.", RED); // Boxfish
+ 			case 0 -> text("You are on the latest version!", GREEN);
+ 			default -> text("You are running " + versionDiff + " version" + (versionDiff == 1 ? "" : "s") + " beyond. " +
+ 							"Please update your server when possible to maintain stability, security, and receive the latest optimizations.",
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 1343649cd77a42dd502747581050b401840a6efe..803dd2ce8d6c0c86d37136a28eda5e1e4b5830f6 100644
+index 1343649cd77a42dd502747581050b401840a6efe..1eeea84be011950f55fc81870fc6aeced3edc4e8 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -956,7 +956,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
@@ -79,6 +101,15 @@ index 1343649cd77a42dd502747581050b401840a6efe..803dd2ce8d6c0c86d37136a28eda5e1e
              while (this.getRunningThread().isAlive()) {
                  this.getRunningThread().stop();
                  try {
+@@ -1860,7 +1860,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+ 
+     @DontObfuscate
+     public String getServerModName() {
+-        return "Pufferfish"; // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return "Boxfish"; // Boxfish - Boxfish // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+     }
+ 
+     public SystemReport fillSystemReport(SystemReport details) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 index cfc41926305441cb36ed67a8cb7e327cd80ff301..f69ec8916c2db9d4b9ff4b8ecb6c6bb2fe053d23 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
