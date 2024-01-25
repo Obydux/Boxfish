@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Obydux <obydux@proton.me>
+Date: Thu, 25 Jan 2024 17:11:20 +0000
+Subject: [PATCH] Optimize RecipeManager
+
+
+diff --git a/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java b/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
+index b81e1802c8dcc8ebdef96d70088c18379598a66b..a3d0529d80d4da7ce3e4644fb58e3da4046599de 100644
+--- a/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
++++ b/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
+@@ -11,8 +11,8 @@ import com.google.gson.JsonParseException;
+ import com.mojang.datafixers.util.Pair;
+ import com.mojang.logging.LogUtils;
+ import com.mojang.serialization.JsonOps;
++import java.util.ArrayList;
+ import java.util.Collection;
+-import java.util.Collections;
+ import java.util.Comparator;
+ import java.util.Iterator;
+ import java.util.List;
+@@ -137,7 +137,7 @@ public class RecipeManager extends SimpleJsonResourceReloadListener {
+     }
+ 
+     public <C extends Container, T extends Recipe<C>> List<RecipeHolder<T>> getAllRecipesFor(RecipeType<T> type) {
+-        return List.copyOf(this.byType(type).values());
++        return new ArrayList<>(this.byType(type).values()); // Boxfish
+     }
+ 
+     public <C extends Container, T extends Recipe<C>> List<RecipeHolder<T>> getRecipesFor(RecipeType<T> type, C inventory, Level world) {
