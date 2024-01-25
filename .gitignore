@@ -1,0 +1,7 @@
+boxfish-api
+boxfish-server
+
+build/
+.gradle/
+
+.idea/
