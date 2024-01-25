@@ -1,1 +1,7 @@
-#minecraft net.minecraft.world.level.storage.loot.LootParams
+minecraft net.minecraft.world.entity.ai.behavior.MoveToTargetSink
+minecraft net.minecraft.world.entity.ai.behavior.SetClosestHomeAsWalkTarget
+minecraft net.minecraft.world.entity.ai.goal.DoorInteractGoal
+minecraft net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation
+minecraft net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation
+minecraft net.minecraft.world.level.pathfinder.SwimNodeEvaluator
+minecraft net.minecraft.world.level.biome.BiomeManager

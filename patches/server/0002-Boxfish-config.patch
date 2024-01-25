@@ -32,7 +32,7 @@ index 80e1dcef1eeb33f553c7d771a00d463e99e3f147..cd0ce26ef7683270c3c3b36542d94496
          this.setFlightAllowed(dedicatedserverproperties.allowFlight);
 diff --git a/src/main/java/xyz/obydux/boxfish/BoxfishConfig.java b/src/main/java/xyz/obydux/boxfish/BoxfishConfig.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..0988489fbf424c89337fb6f46a3050e4713f16b0
+index 0000000000000000000000000000000000000000..70911d28cd6d8b02869f27102fa575b8fb5fc0fe
 --- /dev/null
 +++ b/src/main/java/xyz/obydux/boxfish/BoxfishConfig.java
 @@ -0,0 +1,171 @@
