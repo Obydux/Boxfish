@@ -1,0 +1,92 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Obydux <obydux@proton.me>
+Date: Fri, 26 Jan 2024 16:26:24 +0000
+Subject: [PATCH] Update dependencies
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index cb6b0a0666c8e205026d966b7fb64a938c85743c..5218a71941b9f4bfa4cc3b1e0f19c646e8a0e4c7 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -14,15 +14,15 @@ val alsoShade: Configuration by configurations.creating
+ 
+ dependencies {
+     implementation(project(":boxfish-api")) // Boxfish // Pufferfish // Paper
+-    // Pufferfish start
+-    implementation("io.papermc.paper:paper-mojangapi:1.19.2-R0.1-SNAPSHOT") {
++    // Pufferfish start // Boxfish start
++    implementation("io.papermc.paper:paper-mojangapi:1.20.4-R0.1-SNAPSHOT") {
+         exclude("io.papermc.paper", "paper-api")
+     }
+-    // Pufferfish end
++    // Pufferfish end // Boxfish end
+     // Paper start
+-    implementation("org.jline:jline-terminal-jansi:3.21.0")
++    implementation("org.jline:jline-terminal-jansi:3.25.1")
+     implementation("net.minecrell:terminalconsoleappender:1.3.0")
+-    implementation("net.kyori:adventure-text-serializer-ansi:4.14.0") // Keep in sync with adventureVersion from Paper-API build file
++    implementation("net.kyori:adventure-text-serializer-ansi:4.15.0") // Keep in sync with adventureVersion from Paper-API build file
+     implementation("net.kyori:ansi:1.0.3") // Manually bump beyond above transitive dep
+     /*
+           Required to add the missing Log4j2Plugins.dat file from log4j-core
+@@ -30,22 +30,22 @@ dependencies {
+           all its classes to check if they are plugins.
+           Scanning takes about 1-2 seconds so adding this speeds up the server start.
+      */
+-    implementation("org.apache.logging.log4j:log4j-core:2.19.0") // Paper - implementation
+-    log4jPlugins.annotationProcessorConfigurationName("org.apache.logging.log4j:log4j-core:2.19.0") // Paper - Needed to generate meta for our Log4j plugins
++    implementation("org.apache.logging.log4j:log4j-core:2.22.1") // Paper - implementation
++    log4jPlugins.annotationProcessorConfigurationName("org.apache.logging.log4j:log4j-core:2.22.1") // Paper - Needed to generate meta for our Log4j plugins
+     runtimeOnly(log4jPlugins.output)
+     alsoShade(log4jPlugins.output)
+-    implementation("io.netty:netty-codec-haproxy:4.1.97.Final") // Paper - Add support for proxy protocol
++    implementation("io.netty:netty-codec-haproxy:4.1.106.Final") // Paper - Add support for proxy protocol
+     // Paper end
+-    implementation("org.apache.logging.log4j:log4j-iostreams:2.19.0") // Paper - remove exclusion
+-    implementation("org.ow2.asm:asm-commons:9.5")
++    implementation("org.apache.logging.log4j:log4j-iostreams:2.22.1") // Paper - remove exclusion
++    implementation("org.ow2.asm:asm-commons:9.6")
+     implementation("org.spongepowered:configurate-yaml:4.2.0-SNAPSHOT") // Paper - config files
+     implementation("commons-lang:commons-lang:2.6")
+-    implementation("net.fabricmc:mapping-io:0.5.0") // Paper - needed to read mappings for stacktrace deobfuscation
+-    runtimeOnly("org.xerial:sqlite-jdbc:3.42.0.1")
+-    runtimeOnly("com.mysql:mysql-connector-j:8.2.0")
++    implementation("net.fabricmc:mapping-io:0.5.1") // Paper - needed to read mappings for stacktrace deobfuscation
++    runtimeOnly("org.xerial:sqlite-jdbc:3.45.0.0")
++    runtimeOnly("com.mysql:mysql-connector-j:8.3.0")
+     runtimeOnly("com.lmax:disruptor:3.4.4") // Paper
+     // Paper start - Use Velocity cipher
+-    implementation("com.velocitypowered:velocity-native:3.1.2-SNAPSHOT") {
++    implementation("com.velocitypowered:velocity-native:3.3.0-SNAPSHOT") {
+         isTransitive = false
+     }
+     // Paper end
+@@ -55,17 +55,17 @@ dependencies {
+     runtimeOnly("org.apache.maven.resolver:maven-resolver-transport-http:1.9.18")
+ 
+     // Pufferfish start
+-    implementation("org.yaml:snakeyaml:1.32")
++    implementation("org.yaml:snakeyaml:2.2")
+     implementation ("me.carleslc.Simple-YAML:Simple-Yaml:1.8.4") {
+         exclude(group="org.yaml", module="snakeyaml")
+     }
+     // Pufferfish end
+     implementation("com.github.technove:Flare:34637f3f87") // Pufferfish - flare
+ 
+-    testImplementation("io.github.classgraph:classgraph:4.8.47") // Paper - mob goal test
+-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
++    testImplementation("io.github.classgraph:classgraph:4.8.165") // Paper - mob goal test
++    testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+     testImplementation("org.hamcrest:hamcrest:2.2")
+-    testImplementation("org.mockito:mockito-core:5.5.0")
++    testImplementation("org.mockito:mockito-core:5.10.0")
+ }
+ 
+ val craftbukkitPackageVersion = "1_20_R3" // Paper
+@@ -230,4 +230,4 @@ val runtimeClasspathForRunDev = sourceSets.main.flatMap { src ->
+ tasks.registerRunTask("runDev") {
+     description = "Spin up a non-relocated Mojang-mapped test server"
+     classpath(sourceSets.main.map { it.runtimeClasspath })
+-}
++}
+\ No newline at end of file
