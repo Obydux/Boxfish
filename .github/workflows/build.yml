@@ -31,13 +31,3 @@ jobs:
         with:
           name: Boxfish 1.20.4
           path: ./Boxfish-1.20.4.jar
-
-      - name: Release Boxfish
-        if: github.ref_name == 'ver/1.20'
-        uses: marvinpinto/action-automatic-releases@master
-        with:
-          title: "Boxfish 1.20.4"
-          automatic_release_tag: "1.20.4"
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          files: "./Boxfish-1.20.4.jar"
-          prerelease: false
