@@ -33,7 +33,7 @@ jobs:
           path: ./Boxfish-1.20.4.jar
 
       - name: Release Boxfish
-        if: github.ref_name == 'ver/1.20' && contains(github.event.commits[0].message, '[Release]')
+        if: github.ref_name == 'ver/1.20'
         uses: marvinpinto/action-automatic-releases@master
         with:
           title: "Boxfish 1.20.4"
